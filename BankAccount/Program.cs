@@ -36,11 +36,11 @@ namespace BankAccount
                         accountChoice = GetAccountChoice();
                         if (accountChoice == "a")
                         {
-                            Console.WriteLine("\nChecking Account Balance: $" + clientCheckingAccount.AccountBalance);
+                            clientCheckingAccount.DisplayAccountBalance();
                         }
                         else
                         {
-                            Console.WriteLine("\nSavings Account Balance: $" + clientSavingsAccount.AccountBalance);
+                            clientSavingsAccount.DisplayAccountBalance();
                         }
                         break;
                     case 3: //deposit funds

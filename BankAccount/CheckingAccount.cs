@@ -28,6 +28,11 @@ namespace BankAccount
         }
 
         //Methods
+        public override void DisplayAccountBalance()
+        {
+            Console.WriteLine("\nChecking Account Balance: $" + accountBalance);
+        }
+
         public override void DepositMoney(decimal depositAmount)
         {
             base.DepositMoney(depositAmount);

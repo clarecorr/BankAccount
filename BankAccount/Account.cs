@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BankAccount
 {
-    class Account
+    abstract class Account
     {
         //Fields (all protected as this is parent class)
         protected string accountNumber; //used string b/c an account number should be manipulated 
@@ -32,6 +32,8 @@ namespace BankAccount
         }
 
         //Methods
+        public abstract void DisplayAccountBalance();
+
         public virtual void DepositMoney(decimal depositAmount)
         {
             accountBalance += depositAmount;

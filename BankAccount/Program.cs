@@ -11,12 +11,12 @@ namespace BankAccount
         static void Main(string[] args)
         {
             Client client = new Client("Gerald Garner", "100100100", "100100101"); //instantiate a Client object
-            CheckingAccount clientCheckingAccount = new CheckingAccount();         //instantiate a CheckingAccount object
-            SavingsAccount clientSavingsAccount = new SavingsAccount();            //instantiate a SavingsAccount object
+            CheckingAccount clientCheckingAccount = new CheckingAccount("100100100", 10000); //instantiate a CheckingAccount object
+            SavingsAccount clientSavingsAccount = new SavingsAccount("100100101", 1000000);  //instantiate a SavingsAccount object
 
             int userInput;
             string accountChoice;
-            double amount;
+            decimal amount;
 
             //print menu
             Console.WriteLine("Welcome to the Bank\n\nMenu:\n\n1. View Client Information\n2. View Account Balance\n3. Deposit Funds\n4. Withdraw Funds\n5. Exit");
@@ -82,7 +82,7 @@ namespace BankAccount
          
         }
 
-        static string GetAccountChoice()
+        static string GetAccountChoice() //Method to return which account user wants to access
         {
             string accountChoice;
             Console.WriteLine("\nSelect Account:\n\na.Checking Account\nb.Savings Account");
@@ -96,15 +96,15 @@ namespace BankAccount
         }
         
 
-        static double GetAmount()
+        static decimal GetAmount() //Method to return amount user wants to deposit or withdraw
         {
-            double amount;
+            decimal amount;
             Console.Write("\nEnter Amount: $");
-            double.TryParse(Console.ReadLine(), out amount);
+            decimal.TryParse(Console.ReadLine(), out amount);
             return amount;
+            //if the user enters a non-number, amount will be zero so will not affect their balance
+            //did not want to overcomplicate by catching non-valid inputs and asking them to enter a valid number 
+            //as this way it just won't affect their account
         }
     }
 }
-//if the user enters a non-number or negative, amount will be zero so will not affect their balance
-//did not want to overcomplicate by catching non-valid inputs and asking them to enter a valid number 
-//as this way it just won't affect their account

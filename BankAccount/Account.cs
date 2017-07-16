@@ -10,16 +10,17 @@ namespace BankAccount
     {
         //Fields (all protected as this is parent class)
         protected string accountNumber; //used string b/c an account number should be manipulated 
-        protected double accountBalance;
+        protected decimal accountBalance;
         protected string accountType;  //instructions specify each account should have a type...
 
         //Properties
         public string AccountNumber { get; }
-        public double AccountBalance
+        public decimal AccountBalance
         {
             get
             {
-                return Math.Round(accountBalance, 2); //Want to return the balance rounded to 2 decimals b/c money
+                accountBalance = Math.Round(accountBalance, 2); //Want to return the balance rounded to 2 decimals for money
+                return accountBalance;
             }
         }
         public string AccountType { get; }
@@ -31,14 +32,16 @@ namespace BankAccount
         }
 
         //Methods
-        public virtual void DepositMoney(double depositAmount)
+        public virtual void DepositMoney(decimal depositAmount)
         {
             accountBalance += depositAmount;
+            accountBalance = Math.Round(accountBalance, 2);
         }
 
-        public virtual void WithdrawMoney(double withdrawAmount)
+        public virtual void WithdrawMoney(decimal withdrawAmount)
         {
             accountBalance -= withdrawAmount;
+            accountBalance = Math.Round(accountBalance, 2);
         }
     }
 }

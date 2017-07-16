@@ -8,29 +8,43 @@ namespace BankAccount
 {
     class SavingsAccount : Account
     {
-        private double minimumBalance;
-        private string accountType = "Savings"; 
+        //Fields
+        private decimal minimumBalance = 10;
+        private string accountType = "Savings";
 
-        public double MinimumBalance { get; } = 10; //set minimum balance to $10, cannot set b/c minimum balance should not change
+        //Property
+        public double MinimumBalance { get; }
 
-        public SavingsAccount()
+        //Constructors
+        public SavingsAccount() //default constructor
         {
-            //default constructor
+            this.accountBalance = minimumBalance; //never want saving account balance to be below minimum
         }
 
-        public override void DepositMoney(double depositAmount)
+        public SavingsAccount(string accountNumber, decimal accountBalance) 
+        {
+            if(accountBalance < minimumBalance)
+            {
+                accountBalance = minimumBalance; 
+            }
+            this.accountNumber = accountNumber;
+            this.accountBalance = accountBalance;
+        }
+
+        //Methods
+        public override void DepositMoney(decimal depositAmount)
         {
             base.DepositMoney(depositAmount);
             Console.WriteLine("\nSavings Account Balance: $" + accountBalance);
         }
 
-        public override void WithdrawMoney(double withdrawAmount)
+        public override void WithdrawMoney(decimal withdrawAmount)
         {
-            double amount;
-            while (withdrawAmount > (accountBalance - 10))
+            decimal amount;
+            while (withdrawAmount > (accountBalance - minimumBalance))
             {
-                Console.Write("\nInsufficent Funds (Savings Account has a minimum balance of $10)\n\nEnter a lesser amount: $");
-                double.TryParse(Console.ReadLine(), out amount);
+                Console.Write("\nInsufficent Funds (Savings Account has a minimum balance of ${0})\n\nEnter a lesser amount: $", minimumBalance);
+                decimal.TryParse(Console.ReadLine(), out amount);
                 withdrawAmount = amount;
             }
             base.WithdrawMoney(withdrawAmount);

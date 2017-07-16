@@ -31,16 +31,14 @@ namespace BankAccount
         }
 
         //Methods
-        public virtual double DepositMoney(double depositAmount)
+        public virtual void DepositMoney(double depositAmount)
         {
             accountBalance += depositAmount;
-            return Math.Round(accountBalance, 2);
         }
 
-        public virtual double WithdrawMoney(double withdrawAmount)
+        public virtual void WithdrawMoney(double withdrawAmount)
         {
             accountBalance -= withdrawAmount;
-            return Math.Round(accountBalance, 2);
         }
     }
 }
